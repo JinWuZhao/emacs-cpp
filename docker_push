@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+docker push jinwuzhao/emacs-cpp
+docker tag jinwuzhao/emacs-cpp jinwuzhao/emacs-cpp:$TRAVIS_TAG
+docker push jinwuzhao/emacs-cpp:$TRAVIS_TAG
+docker logout
