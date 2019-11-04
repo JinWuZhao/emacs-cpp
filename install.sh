@@ -1,16 +1,11 @@
 #!/bin/sh
 
-rm -fr /etc/pacman.d/gnupg
-pacman-key --init
-pacman-key --populate archlinux
-
 pacman -Syu --noconfirm
 
 printf '[archlinuxcn]\nServer = https://repo.archlinuxcn.org/$arch\n' >> /etc/pacman.conf
 pacman -Syy --noconfirm
 
 pacman -S --noconfirm archlinuxcn-keyring
-
 pacman -S --noconfirm cmake
 pacman -S --noconfirm clang
 pacman -S --noconfirm llvm
