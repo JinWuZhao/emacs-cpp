@@ -1,7 +1,8 @@
 ;;; -*- lexical-binding:t -*-
 
 (require 'package)
-(setq package-archives '(("gnu" . "http://mirrors.cloud.tencent.com/elpa/gnu/") ("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/") ("melpa-stable" . "http://mirrors.cloud.tencent.com/elpa/melpa-stable/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -10,7 +11,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ace-jump-mode company-tabnine youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot ace-window magit)))
+    (ace-jump-mode youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot rust-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -91,6 +92,8 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'awesome-tab)
 (awesome-tab-mode t)
+(setq awesome-tab-height 120)
+(setq awesome-tab-active-bar-height 20)
 (global-set-key (kbd "M-1") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "M-2") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "M-3") 'awesome-tab-select-visible-tab)
@@ -185,14 +188,6 @@ re-downloaded in order to locate PACKAGE."
 (require 'company-restclient)
 (push 'company-restclient company-backends)
 (add-hook 'restclient-mode-hook #'company-mode-on)
-
-(require 'company-tabnine)
-(add-to-list 'company-backends #'company-tabnine)
-(set-variable 'company-tabnine-binaries-folder
-              (locate-user-emacs-file
-               (file-name-nondirectory company-tabnine-binaries-folder)))
-(if (not (file-exists-p company-tabnine-binaries-folder))
-    (company-tabnine-install-binary))
 
 (setq company-show-numbers t)
 
